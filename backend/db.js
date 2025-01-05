@@ -1,38 +1,38 @@
+// backend/db.js
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/paytm");
+mongoose.connect("mongodb://localhost:27017/paytm")
 
-//Create a Schema for Users
+// Create a Schema for Users
 const userSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true,
-        unique:true,
-        trim:true,
-        lowercase:true,
-        minlength:3,
-        maxlength:30
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        minLength: 3,
+        maxLength: 30
     },
-    password:{
-        type:String,
-        required:true,
-        minlength:6
+    password: {
+        type: String,
+        required: true,
+        minLength: 6
     },
-    firstname:{
-        type:String,
-        required:true,
-        trim:true,
-        maxlength:50
+    firstName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
     },
-    lastname:{
-        type:String,
-        required:true,
-        trim:true,
-        maxlength:50
+    lastName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
     }
 });
 
-//Create a model for the Schema
 const accountSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // Reference to User model
@@ -45,12 +45,10 @@ const accountSchema = new mongoose.Schema({
     }
 });
 
-
 const Account = mongoose.model('Account', accountSchema);
 const User = mongoose.model('User', userSchema);
 
-
-module.exports={
-    User,
+module.exports = {
+	User,
     Account
 };
